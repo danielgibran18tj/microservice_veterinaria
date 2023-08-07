@@ -1,6 +1,5 @@
 plugins {
-	id 'java-library'
-	id 'maven-publish'
+	id 'java'
 	id 'org.springframework.boot' version '3.1.2'
 	id 'io.spring.dependency-management' version '1.1.2'
 }
@@ -18,25 +17,8 @@ configurations {
 	}
 }
 
-publishing {
-	publications {
-		myLib(MavenPublication) {
-			from components.java
-			group = 'com.microservicios.clinica' // Cambia por el groupId correcto
-			artifactId = 'my-artifact-id' // Cambiar por el artifactId correcto
-			version = '0.0.1-SNAPSHOT' // Cambiar por la versión correcta
-
-			// Opcional: Puedes configurar el archivo POM con metadatos adicionales aquí si lo deseas
-		}
-	}
-	repositories {
-		mavenLocal() // Usa el repositorio local de Maven
-	}
-}	//./gradlew.bat publishToMavenLocal    usar en comando
-
 repositories {
 	mavenCentral()
-	mavenLocal()
 }
 
 dependencies {

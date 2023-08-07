@@ -3,6 +3,7 @@ package com.microservicios.clinica.clinica_veter_consulta_service.service;
 import com.microservicios.clinica.clinica_veter_consulta_service.entity.Consulta;
 import com.microservicios.clinica.clinica_veter_consulta_service.entity.MascotaEmpleadoId;
 import com.microservicios.clinica.clinica_veter_consulta_service.repository.ConsultaRepositorio;
+
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,8 +20,8 @@ public class ConsultaServicio {
     }
 
     public List<Consulta> getAll(){
-        List<Consulta> consultas =  this.consultaRepositorio.findAll();
-        return consultas;
+        //List<Consulta> consultas =  this.consultaRepositorio.findAll();
+        return (List<Consulta>) this.consultaRepositorio.findAll();
     }
 
     public Consulta save(Consulta consulta){

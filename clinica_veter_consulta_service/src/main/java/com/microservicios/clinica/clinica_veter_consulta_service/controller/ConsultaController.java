@@ -1,8 +1,8 @@
 package com.microservicios.clinica.clinica_veter_consulta_service.controller;
 
+import com.microservicios.clinica.clinica_veter_consulta_service.service.ConsultaServicio;
 import com.microservicios.clinica.clinica_veter_consulta_service.entity.Consulta;
 import com.microservicios.clinica.clinica_veter_consulta_service.entity.MascotaEmpleadoId;
-import com.microservicios.clinica.clinica_veter_consulta_service.service.ConsultaServicio;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;

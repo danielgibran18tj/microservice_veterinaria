@@ -10,7 +10,7 @@ import java.util.List;
 
 public interface ClienteRespositorio extends ListCrudRepository<Cliente, Integer> {
 
-    @Query(value =
+    /*@Query(value =
             "SELECT     cliente.id_cliente AS id_cliente,       " +
             "           cliente.nombre AS duenio_mascota,       " +
             "           mascota.nombre AS nombre_mascota,       " +
@@ -45,5 +45,5 @@ public interface ClienteRespositorio extends ListCrudRepository<Cliente, Integer
             "INNER JOIN m.consultas co " +
             "INNER JOIN co.empleado e " +
             "WHERE c.idCliente = :idCliente")
-    List<Object[]> obtenerDatosConsultaPorClienteId(Integer idCliente);
+    List<Object[]> obtenerDatosConsultaPorClienteId(Integer idCliente);*/
 }

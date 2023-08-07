@@ -1,8 +1,6 @@
 package com.microservicios.clinica.clinica_veter_client_service.controller;
 
 import com.microservicios.clinica.clinica_veter_client_service.entity.Cliente;
-import com.microservicios.clinica.clinica_veter_client_service.entity.Mascota;
-import com.microservicios.clinica.clinica_veter_client_service.repository.projection.ClienteSummary;
 import com.microservicios.clinica.clinica_veter_client_service.service.ClienteServicio;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,9 +48,6 @@ public class ClienteController {
     @PostMapping
     public ResponseEntity<Cliente> agg(@RequestBody Cliente cliente){
         if (cliente.getIdCliente()== null || !this.clienteServicio.exists(cliente.getIdCliente())){
-            for (Mascota mascota1 : cliente.getIdMascota()){
-                mascota1.setCliente(cliente);
-            }
             return ResponseEntity.ok(this.clienteServicio.save(cliente));
         }
         return ResponseEntity.badRequest().build();
@@ -62,9 +57,6 @@ public class ClienteController {
     @PutMapping
     public ResponseEntity<Cliente> update(@RequestBody Cliente cliente){
         if (cliente.getIdCliente()!= null && this.clienteServicio.exists(cliente.getIdCliente())){
-            for (Mascota mascota1 : cliente.getIdMascota()){
-                mascota1.setCliente(cliente);
-            }
             return ResponseEntity.ok(this.clienteServicio.save(cliente));
         }
         return ResponseEntity.badRequest().build();    }

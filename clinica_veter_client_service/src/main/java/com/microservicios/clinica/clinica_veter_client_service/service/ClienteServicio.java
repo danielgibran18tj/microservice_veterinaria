@@ -26,7 +26,7 @@ public class ClienteServicio {
     }
 
     public List<Object[]> getConsultaMascota(Integer clienteId){
-        return this.clienteRespositorio.obtenerDatosConsultaPorClienteId(clienteId);
+        return null;//this.clienteRespositorio.obtenerDatosConsultaPorClienteId(clienteId);
     }
 
     public Cliente save(Cliente cliente){

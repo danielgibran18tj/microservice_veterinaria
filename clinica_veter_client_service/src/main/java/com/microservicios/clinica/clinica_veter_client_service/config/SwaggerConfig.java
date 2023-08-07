@@ -10,8 +10,9 @@ public class SwaggerConfig {
     @Bean
     public OpenAPI usersMicroserviceOpenAPI() {
         return new OpenAPI()
-                .info(new Info().title("Clinica Veterinaria")
-                        .version("1.0"));
+                .info(new Info()
+                    .title("Clinica Veterinaria")
+                    .version("1.0"));
     }
 }
     //http://localhost:8080/veterinaria/api/swagger-ui/index.html
