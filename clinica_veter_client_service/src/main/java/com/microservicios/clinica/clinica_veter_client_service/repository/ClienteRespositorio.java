@@ -2,15 +2,17 @@ package com.microservicios.clinica.clinica_veter_client_service.repository;
 
 import com.microservicios.clinica.clinica_veter_client_service.entity.Cliente;
 import com.microservicios.clinica.clinica_veter_client_service.repository.projection.ClienteSummary;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.ListCrudRepository;
 import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
-public interface ClienteRespositorio extends ListCrudRepository<Cliente, Integer> {
+public interface ClienteRespositorio extends JpaRepository<Cliente, Integer> {
 
-    /*@Query(value =
+    @Query(value =
             "SELECT     cliente.id_cliente AS id_cliente,       " +
             "           cliente.nombre AS duenio_mascota,       " +
             "           mascota.nombre AS nombre_mascota,       " +
@@ -32,9 +34,9 @@ public interface ClienteRespositorio extends ListCrudRepository<Cliente, Integer
             "           mascota.id_mascota," +
             "           empleado.nombre," +
             "           consulta.fecha", nativeQuery = true)
-    ClienteSummary datosConsultaMascota(@Param("clienteId") int clienteId);
+    ClienteSummary datosConsultaMascota(@Param("clienteId") Integer clienteId);
 
-    @Query("SELECT c.idCliente AS id_cliente, " +
+    /*@Query("SELECT c.idCliente AS id_cliente, " +
             "c.nombre AS duenio_mascota, " +
             "m.nombre AS nombre_mascota, " +
             "m.idMascota AS id_mascota, " +

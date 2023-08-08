@@ -21,23 +21,38 @@ public class ClienteServicio {
         return (List<Cliente>) this.clienteRespositorio.findAll();
     }
 
-    public Cliente getId(int idCliente){
+    public Cliente getId(Integer idCliente){
         return this.clienteRespositorio.findById(idCliente).orElse(null);
     }
 
     public List<Object[]> getConsultaMascota(Integer clienteId){
-        return null;//this.clienteRespositorio.obtenerDatosConsultaPorClienteId(clienteId);
+        //List<Object[]> objects = (List<Object[]>) this.clienteRespositorio.datosConsultaMascota(clienteId);
+        return null;
     }
 
     public Cliente save(Cliente cliente){
-        return this.clienteRespositorio.save(cliente);
+        if (!exists(cliente.getIdCliente())){
+            return this.clienteRespositorio.save(cliente);
+        }
+        return null;
+    }
+
+    public Cliente update(Cliente cliente){
+        if (exists(cliente.getIdCliente())){
+            return this.clienteRespositorio.save(cliente);
+        }
+        return null;
     }
 
     public boolean exists(int idCliente){
         return this.clienteRespositorio.existsById(idCliente);
     }
 
-    public void delete(int id){
-        this.clienteRespositorio.deleteById(id);
+    public boolean delete(int id){
+        if (exists(id)){
+            this.clienteRespositorio.deleteById(id);
+            return true;
+        }
+        return false;
     }
 }
