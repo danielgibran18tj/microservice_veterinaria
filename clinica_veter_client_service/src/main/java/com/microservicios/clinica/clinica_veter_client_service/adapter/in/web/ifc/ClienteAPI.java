@@ -1,6 +1,6 @@
-package com.microservicios.clinica.clinica_veter_client_service.controller.ifc;
+package com.microservicios.clinica.clinica_veter_client_service.adapter.controller.ifc;
 
-import com.microservicios.clinica.clinica_veter_client_service.entity.Cliente;
+import com.microservicios.clinica.clinica_veter_client_service.adapter.entity.ClientEntity;
 
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -20,26 +20,26 @@ import java.util.List;
 @RequestMapping(value = "/v1")
 public interface ClienteAPI {
 
-    @ApiOperation(value = "Find client", nickname = "getClients", notes = "Returns all clients", response = Cliente.class, tags={ "client", })
+    @ApiOperation(value = "Find client", nickname = "getClients", notes = "Returns all clients", response = ClientEntity.class, tags={ "client", })
     @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "successful operation", response = Cliente.class),
+            @ApiResponse(code = 200, message = "successful operation", response = ClientEntity.class),
             @ApiResponse(code = 400, message = "Invalid ID supplied"),
             @ApiResponse(code = 404, message = "Client not found") })
     @RequestMapping(value = "/client",
             produces = { "application/json" },
             method = RequestMethod.GET)
-    ResponseEntity<List<Cliente>> getAll();
+    ResponseEntity<List<ClientEntity>> getAll();
 
 
-    @ApiOperation(value = "Find client by ID", nickname = "getClientById", notes = "Returns a single client", response = Cliente.class, tags={ "client", })
+    @ApiOperation(value = "Find client by ID", nickname = "getClientById", notes = "Returns a single client", response = ClientEntity.class, tags={ "client", })
     @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "successful operation", response = Cliente.class),
+            @ApiResponse(code = 200, message = "successful operation", response = ClientEntity.class),
             @ApiResponse(code = 400, message = "Invalid ID supplied"),
             @ApiResponse(code = 404, message = "Client not found") })
     @RequestMapping(value = "/client/{idClient}",
             produces = { "application/json" },
             method = RequestMethod.GET)
-    ResponseEntity<Cliente> getId(@ApiParam(value = "ID of Client to return",required=true) @PathVariable("idClient") Integer idCliente);
+    ResponseEntity<ClientEntity> getId(@ApiParam(value = "ID of Client to return",required=true) @PathVariable("idClient") Integer idCliente);
 
 
     @ApiOperation(value = "Add a new Client to the db", nickname = "addClient", notes = "", tags={ "client", })
@@ -49,7 +49,7 @@ public interface ClienteAPI {
             produces = { "application/json" },
             consumes = { "application/json" },
             method = RequestMethod.POST)
-    ResponseEntity<Cliente> agg(@RequestBody Cliente cliente);
+    ResponseEntity<ClientEntity> agg(@RequestBody ClientEntity clientEntity);
 
 
     @ApiOperation(value = "Update an existing Client", nickname = "updateClient", notes = "", tags={ "client", })
@@ -61,7 +61,7 @@ public interface ClienteAPI {
             produces = { "application/json" },
             consumes = { "application/json" },
             method = RequestMethod.PUT)
-    ResponseEntity<Cliente> update(@RequestBody Cliente cliente);
+    ResponseEntity<ClientEntity> update(@RequestBody ClientEntity clientEntity);
 
 
     @ApiOperation(value = "Delete an existing Client", nickname = "deleteClient", notes = "", tags={ "client", })

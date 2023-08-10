@@ -1,4 +1,4 @@
-package com.microservicios.clinica.clinica_veter_client_service.entity;
+package com.microservicios.clinica.clinica_veter_client_service.adapter.entity;
 
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -12,10 +12,10 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
-public class Cliente {
+public class ClientEntity {
     @Id
     @Column(name = "id_cliente")//, nullable = false, length = 15)
-    private Integer idCliente;
+    private Integer id;
 
     //@Column(nullable = false, length = 60)
     private String nombre;
@@ -29,8 +29,8 @@ public class Cliente {
     //@Column(length = 50)
     private String email;
 
-    @ElementCollection
+    /*@ElementCollection
     @CollectionTable(name = "mascota", joinColumns = @JoinColumn(name = "id_cliente"))
     @Column(name = "id_mascota")
-    private List<Integer> idMascotas;
+    private List<Integer> idMascotas;*/
 }
