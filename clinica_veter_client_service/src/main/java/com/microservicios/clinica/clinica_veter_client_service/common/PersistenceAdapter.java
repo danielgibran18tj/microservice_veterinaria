@@ -1,4 +1,4 @@
-package com.ismaelviss.nttdata.common;
+package com.microservicios.clinica.clinica_veter_client_service.common;
 
 import org.springframework.core.annotation.AliasFor;
 import org.springframework.stereotype.Component;

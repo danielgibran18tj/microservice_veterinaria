@@ -1,50 +1,51 @@
 package com.microservicios.clinica.clinica_veter_client_service.service;
 
-import com.microservicios.clinica.clinica_veter_client_service.adapter.entity.ClientEntity;
-import com.microservicios.clinica.clinica_veter_client_service.repository.ClienteCrupRespositorio;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import com.microservicios.clinica.clinica_veter_client_service.adapter.out.persistence.entity.ClientEntity;
+import com.microservicios.clinica.clinica_veter_client_service.common.UseCase;
+import com.microservicios.clinica.clinica_veter_client_service.adapter.out.persistence.repository.ClientPort;
+import com.microservicios.clinica.clinica_veter_client_service.common.exception.ApplicationException;
+import com.microservicios.clinica.clinica_veter_client_service.domain.Client;
 
 import java.util.List;
 
-@Service
-public class ClienteServicio {
-    private final ClienteCrupRespositorio clienteCrupRespositorio;
+@UseCase
+public class ClientService implements ClientServicePort{
+    private final ClientPort clientPort;
 
-    @Autowired
-    public ClienteServicio(ClienteCrupRespositorio clienteCrupRespositorio) {
-        this.clienteCrupRespositorio = clienteCrupRespositorio;
+    public ClientService(ClientPort clientPort) {
+        this.clientPort = clientPort;
     }
 
-    public List<ClientEntity> getAll(){
-        return (List<ClientEntity>) this.clienteCrupRespositorio.findAll();
+    public List<Client> getAll() throws ApplicationException {
+        return this.clientPort.getAll();
     }
 
-    public ClientEntity getId(Integer idCliente){
-        return this.clienteCrupRespositorio.findById(idCliente).orElse(null);
+    public Client getId(Integer idClient) throws ApplicationException {
+        return this.clientPort.getId(idClient);
     }
 
-    public ClientEntity save(ClientEntity clientEntity){
-        if (!exists(clientEntity.getId())){
-            return this.clienteCrupRespositorio.save(clientEntity);
+    public Client save(Client client){
+        if (!exists(client.getIdCliente())){
+            return this.clientPort.save(client);
         }
         return null;
     }
 
-    public ClientEntity update(ClientEntity clientEntity){
-        if (exists(clientEntity.getId())){
-            return this.clienteCrupRespositorio.save(clientEntity);
+    @Override
+    public Client update(Client client) throws ApplicationException{
+        if (exists(client.getIdCliente())){
+            return this.clientPort.update(client);
         }
         return null;
     }
 
     public boolean exists(int idCliente){
-        return this.clienteCrupRespositorio.existsById(idCliente);
+        return this.clientPort.exists(idCliente);
     }
 
-    public boolean delete(int id){
+    public boolean delete(int id) throws ApplicationException{
         if (exists(id)){
-            this.clienteCrupRespositorio.deleteById(id);
+            this.clientPort.delete(id);
             return true;
         }
         return false;

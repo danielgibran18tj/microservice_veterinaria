@@ -1,7 +1,9 @@
-package com.microservicios.clinica.clinica_veter_client_service.adapter.controller.ifc;
+package com.microservicios.clinica.clinica_veter_client_service.adapter.in.web.ifc;
 
-import com.microservicios.clinica.clinica_veter_client_service.adapter.entity.ClientEntity;
+import com.microservicios.clinica.clinica_veter_client_service.adapter.out.persistence.entity.ClientEntity;
 
+import com.microservicios.clinica.clinica_veter_client_service.common.exception.ApplicationException;
+import com.microservicios.clinica.clinica_veter_client_service.domain.Client;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
@@ -20,26 +22,26 @@ import java.util.List;
 @RequestMapping(value = "/v1")
 public interface ClienteAPI {
 
-    @ApiOperation(value = "Find client", nickname = "getClients", notes = "Returns all clients", response = ClientEntity.class, tags={ "client", })
+    @ApiOperation(value = "Find client", nickname = "getClients", notes = "Returns all clients", response = Client.class, tags={ "client", })
     @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "successful operation", response = ClientEntity.class),
+            @ApiResponse(code = 200, message = "successful operation", response = Client.class),
             @ApiResponse(code = 400, message = "Invalid ID supplied"),
             @ApiResponse(code = 404, message = "Client not found") })
     @RequestMapping(value = "/client",
             produces = { "application/json" },
             method = RequestMethod.GET)
-    ResponseEntity<List<ClientEntity>> getAll();
+    ResponseEntity<List<Client>> getAll();
 
 
-    @ApiOperation(value = "Find client by ID", nickname = "getClientById", notes = "Returns a single client", response = ClientEntity.class, tags={ "client", })
+    @ApiOperation(value = "Find client by ID", nickname = "getClientById", notes = "Returns a single client", response = Client.class, tags={ "client", })
     @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "successful operation", response = ClientEntity.class),
+            @ApiResponse(code = 200, message = "successful operation", response = Client.class),
             @ApiResponse(code = 400, message = "Invalid ID supplied"),
             @ApiResponse(code = 404, message = "Client not found") })
     @RequestMapping(value = "/client/{idClient}",
             produces = { "application/json" },
             method = RequestMethod.GET)
-    ResponseEntity<ClientEntity> getId(@ApiParam(value = "ID of Client to return",required=true) @PathVariable("idClient") Integer idCliente);
+    ResponseEntity<Client> getId(@ApiParam(value = "ID of Client to return",required=true) @PathVariable("idClient") Integer idClient);
 
 
     @ApiOperation(value = "Add a new Client to the db", nickname = "addClient", notes = "", tags={ "client", })
@@ -49,7 +51,7 @@ public interface ClienteAPI {
             produces = { "application/json" },
             consumes = { "application/json" },
             method = RequestMethod.POST)
-    ResponseEntity<ClientEntity> agg(@RequestBody ClientEntity clientEntity);
+    ResponseEntity<Client> agg(@RequestBody Client client) throws ApplicationException;
 
 
     @ApiOperation(value = "Update an existing Client", nickname = "updateClient", notes = "", tags={ "client", })
@@ -61,7 +63,7 @@ public interface ClienteAPI {
             produces = { "application/json" },
             consumes = { "application/json" },
             method = RequestMethod.PUT)
-    ResponseEntity<ClientEntity> update(@RequestBody ClientEntity clientEntity);
+    ResponseEntity<Client> update(@RequestBody Client client) throws ApplicationException;
 
 
     @ApiOperation(value = "Delete an existing Client", nickname = "deleteClient", notes = "", tags={ "client", })
@@ -71,6 +73,6 @@ public interface ClienteAPI {
             @ApiResponse(code = 405, message = "Validation exception") })
     @RequestMapping(value = "/client/{idClient}",
             method = RequestMethod.DELETE)
-    ResponseEntity<Void> delete(@ApiParam(value = "ID of Client",required=true) @PathVariable("idClient") int idClient);
+    ResponseEntity<Void> delete(@ApiParam(value = "ID of Client",required=true) @PathVariable("idClient") int idClient) throws ApplicationException;
 
     }

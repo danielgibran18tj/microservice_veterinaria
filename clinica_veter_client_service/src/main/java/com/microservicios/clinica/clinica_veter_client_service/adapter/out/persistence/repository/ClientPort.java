@@ -1,21 +1,22 @@
-package com.microservicios.clinica.clinica_veter_client_service.repository;
+package com.microservicios.clinica.clinica_veter_client_service.adapter.out.persistence.repository;
 
-import com.microservicios.clinica.clinica_veter_client_service.adapter.entity.ClientEntity;
-import org.springframework.stereotype.Repository;
+import com.microservicios.clinica.clinica_veter_client_service.adapter.out.persistence.entity.ClientEntity;
+import com.microservicios.clinica.clinica_veter_client_service.common.exception.ApplicationException;
+import com.microservicios.clinica.clinica_veter_client_service.domain.Client;
 
 import java.util.List;
 
-public interface ClientRepository {
+public interface ClientPort {
 
-    List<ClientEntity> getAll();
+    List<Client> getAll() throws ApplicationException;
 
-    ClientEntity getId(Integer idCliente) throws ApplicationException;
+    Client getId(Integer idClient) throws ApplicationException;
 
-    ClientEntity save(ClientEntity clientEntity);
+    Client save(Client client);
 
-    ClientEntity update(ClientEntity clientEntity) throws ApplicationException;
+    Client update(Client client) throws ApplicationException ;
 
-    public boolean exists(int idCliente) throws ApplicationException;
+    boolean exists(int idClient);
 
-    public boolean delete(int id) throws ApplicationException;
+    boolean delete (int id) throws ApplicationException;
 }

@@ -1,9 +1,8 @@
-package com.microservicios.clinica.clinica_veter_client_service.adapter.in.web;
+package com.microservicios.clinica.clinica_veter_client_service.adapter.in.web.controller;
 
 import com.microservicios.clinica.clinica_veter_client_service.adapter.in.web.ifc.ClienteAPI;
 import com.microservicios.clinica.clinica_veter_client_service.common.exception.ApplicationException;
 import com.microservicios.clinica.clinica_veter_client_service.domain.Client;
-import com.microservicios.clinica.clinica_veter_client_service.service.ClientService;
 import com.microservicios.clinica.clinica_veter_client_service.service.ClientServicePort;
 import io.swagger.annotations.ApiParam;
 import jakarta.servlet.http.HttpServletRequest;

@@ -1,4 +1,4 @@
-package com.microservicios.clinica.clinica_veter_client_service.adapter.entity;
+package com.microservicios.clinica.clinica_veter_client_service.adapter.out.persistence.entity;
 
 import jakarta.persistence.*;
 import lombok.Getter;

@@ -1,12 +1,11 @@
-package com.microservicios.clinica.clinica_veter_client_service.repository;
+package com.microservicios.clinica.clinica_veter_client_service.adapter.out.persistence.repository;
 
-import com.microservicios.clinica.clinica_veter_client_service.adapter.entity.ClientEntity;
-import com.microservicios.clinica.clinica_veter_client_service.repository.projection.ClienteSummary;
+import com.microservicios.clinica.clinica_veter_client_service.adapter.out.persistence.entity.ClientEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
 
-public interface ClienteCrupRespositorio extends JpaRepository<ClientEntity, Integer> {
+@Repository
+public interface ClientCrudRepository extends JpaRepository<ClientEntity, Integer> {
 
     /*@Query(value =
             "SELECT     cliente.id_cliente AS id_cliente,       " +

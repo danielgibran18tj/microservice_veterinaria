@@ -35,3 +35,4 @@ out/
 
 ### VS Code ###
 .vscode/
+/src/main/java/com/microservicios/clinica/clinica_veter_client_service/adapter/out/persistence/repository/projection/ClienteSummary.java
