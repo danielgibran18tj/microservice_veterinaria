@@ -1,10 +1,10 @@
 package com.microservicios.clinica.clinica_veter_client_service.service;
 
-import com.microservicios.clinica.clinica_veter_client_service.adapter.out.persistence.entity.ClientEntity;
 import com.microservicios.clinica.clinica_veter_client_service.common.UseCase;
 import com.microservicios.clinica.clinica_veter_client_service.adapter.out.persistence.repository.ClientPort;
 import com.microservicios.clinica.clinica_veter_client_service.common.exception.ApplicationException;
 import com.microservicios.clinica.clinica_veter_client_service.domain.Client;
+import org.springframework.http.HttpStatus;
 
 import java.util.List;
 
@@ -21,14 +21,19 @@ public class ClientService implements ClientServicePort{
     }
 
     public Client getId(Integer idClient) throws ApplicationException {
-        return this.clientPort.getId(idClient);
+        var client = this.clientPort.getId(idClient);
+
+        if (client == null) {
+            throw new ApplicationException(HttpStatus.NOT_FOUND, "NOT_FOUND_CLIENT", "cliente no existe");
+        }
+        return client;
     }
 
-    public Client save(Client client){
+    public Client save(Client client) throws ApplicationException {
         if (!exists(client.getIdCliente())){
             return this.clientPort.save(client);
         }
-        return null;
+        throw new ApplicationException(HttpStatus.FOUND, "FOUND_CLIENT", "cliente ya existe");
     }
 
     @Override
@@ -44,10 +49,11 @@ public class ClientService implements ClientServicePort{
     }
 
     public boolean delete(int id) throws ApplicationException{
-        if (exists(id)){
-            this.clientPort.delete(id);
-            return true;
-        }
-        return false;
+            if (exists(id)){
+                this.clientPort.delete(id);
+                return true;
+            }
+            throw new ApplicationException(HttpStatus.NOT_FOUND, "NOT_FOUND_CLIENT", "cliente no existe");
+
     }
 }

@@ -31,6 +31,6 @@ public class Sucursal {
     private String email;
 
     // Relación 1 a muchos con Empleado
-    @OneToMany(mappedBy = "idSucursal")
+    @OneToMany(mappedBy = "idSucursal", cascade = CascadeType.ALL)
     private List<Empleado> idEmpleado;
 }

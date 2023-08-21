@@ -13,12 +13,12 @@ spring:
   # DB
   # ===============================
   datasource:
-    #url: jdbc:mysql://localhost:3306/microservice-clinica
+    url: jdbc:mysql://localhost:3306/micro_clinica
     driver-class-name: com.mysql.cj.jdbc.Driver
     #embedded-database-connection: h2
     username: root
     password: leinad
-    url: jdbc:mysql://localhost:3306/clinica_veterinaria
+    #url: jdbc:mysql://localhost:3306/clinica_veterinaria
 
 
   # ===============================
@@ -37,4 +37,10 @@ spring:
 logging:
   pattern:
     console: "%d{yyyy-MM-dd HH:mm:ss} ${LOG_LEVEL_PATTERN:-%5p} %m%n"
+  level:
+    org:
+      springframework:
+        security:
+          web: debug
+
 

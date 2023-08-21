@@ -24,7 +24,7 @@ public class ApplicationExceptionHandler {
         errorResponse.setCode(applicationException.getCode());
         errorResponse.setMessage(applicationException.getMessage());
         log.error("ApplicationExceptionHandler", applicationException);
-        return new ResponseEntity<ErrorResponse>(errorResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+        return new ResponseEntity<ErrorResponse>(errorResponse, applicationException.getHttpStatus());
     }
 
     @ExceptionHandler(ConstraintViolationException.class)

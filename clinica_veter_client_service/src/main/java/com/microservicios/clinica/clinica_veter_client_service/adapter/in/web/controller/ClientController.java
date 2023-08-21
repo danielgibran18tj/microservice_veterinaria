@@ -1,6 +1,6 @@
 package com.microservicios.clinica.clinica_veter_client_service.adapter.in.web.controller;
 
-import com.microservicios.clinica.clinica_veter_client_service.adapter.in.web.ifc.ClienteAPI;
+import com.microservicios.clinica.clinica_veter_client_service.adapter.in.web.controller.ifc.ClienteAPI;
 import com.microservicios.clinica.clinica_veter_client_service.common.exception.ApplicationException;
 import com.microservicios.clinica.clinica_veter_client_service.domain.Client;
 import com.microservicios.clinica.clinica_veter_client_service.service.ClientServicePort;
@@ -40,26 +40,17 @@ public class ClientController implements ClienteAPI {
     }
 
 
-    public ResponseEntity<Client> getId(@ApiParam(value = "ID of Product to return",required=true) @PathVariable("idClient") Integer idClient) {
+    public ResponseEntity<Client> getId(@ApiParam(value = "ID of Client to return",required=true) @PathVariable("idClient") Integer idClient) throws ApplicationException {
         String accept = request.getHeader("Accept");
         if (accept != null && accept.contains("application/json")) {
-            try {
                 Client client = clientServicePort.getId(idClient);
-                if (client != null) {
-                    return new ResponseEntity<>(client, HttpStatus.OK);
-                } else {
-                    return new ResponseEntity<>(HttpStatus.NOT_FOUND); // Cliente no encontrado
-                }
-            } catch (Exception e) {
-                log.error("Couldn't serialize response for content type application/json", e);
-                return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-            }
+                return ResponseEntity.ok(client);
         }
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
     }
 
     @Override
-    public ResponseEntity<Client> agg(@RequestBody Client client){
+    public ResponseEntity<Client> agg(@RequestBody Client client) throws ApplicationException {
         Client cliente1 = clientServicePort.save(client);
         try {
             if (cliente1 != null){
@@ -88,19 +79,5 @@ public class ClientController implements ClienteAPI {
         }
         return ResponseEntity.badRequest().build();
     }
-
-
-
-
-    //QUERY PERSONALIZADO, CONSULTA CON DATOS DE CLIENTE
-    //@GetMapping("/summary/{id}")
-    /*public ResponseEntity<List<Object[]>> getSummary(@PathVariable Integer id){        //revisar codigo
-        List<Object[]> consultas = clienteServicio.getConsultaMascota(id);
-        if (consultas.isEmpty()) {
-            return ResponseEntity.notFound().build();
-        } else {
-            return ResponseEntity.ok(consultas);
-        }
-    }*/
 
 }

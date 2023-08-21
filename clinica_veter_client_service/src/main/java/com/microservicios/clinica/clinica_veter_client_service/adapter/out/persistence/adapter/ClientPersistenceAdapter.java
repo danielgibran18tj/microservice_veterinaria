@@ -1,13 +1,12 @@
 package com.microservicios.clinica.clinica_veter_client_service.adapter.out.persistence.adapter;
 
-
-import com.microservicios.clinica.clinica_veter_client_service.adapter.out.persistence.entity.ClientEntity;
 import com.microservicios.clinica.clinica_veter_client_service.adapter.out.persistence.mapper.ClientMapper;
 import com.microservicios.clinica.clinica_veter_client_service.adapter.out.persistence.repository.ClientCrudRepository;
 import com.microservicios.clinica.clinica_veter_client_service.adapter.out.persistence.repository.ClientPort;
 import com.microservicios.clinica.clinica_veter_client_service.common.PersistenceAdapter;
 import com.microservicios.clinica.clinica_veter_client_service.common.exception.ApplicationException;
 import com.microservicios.clinica.clinica_veter_client_service.domain.Client;
+import org.springframework.http.HttpStatus;
 
 import java.util.List;
 
@@ -33,7 +32,7 @@ public class ClientPersistenceAdapter implements ClientPort {
         return clientCrudRepository
                 .findById(idClient)
                 .map(ClientMapper.INSTANCE::toClient)
-                .orElseThrow(() -> new ApplicationException("NOT_FOUND_CLIENT", "cliente no existe"));
+                .orElseThrow(() -> new ApplicationException(HttpStatus.NOT_FOUND, "NOT_FOUND_CLIENT", "cliente no existe"));
     }
 
     @Override
@@ -54,7 +53,7 @@ public class ClientPersistenceAdapter implements ClientPort {
             return client;
         }
         else {
-            throw new ApplicationException("NOT_FOUND_CLIENT", "cliente no existe");
+            throw new ApplicationException( "NOT_FOUND_CLIENT", "cliente no existe");
         }
     }
 
@@ -64,17 +63,9 @@ public class ClientPersistenceAdapter implements ClientPort {
     }
 
     @Override
-    public boolean delete(int id) throws ApplicationException {
-        var clientEntityOptional = clientCrudRepository.findById(id);
-        try {
-            if (clientEntityOptional.isPresent()) {
-                clientCrudRepository.delete(clientEntityOptional.get());
-                return true;
-            }
-        }catch (Exception e){
-            throw new ApplicationException("NOT_FOUND_CLIENT", "cliente no existe");
-        }
-        return false;
+    public boolean delete(int id) {
+        clientCrudRepository.deleteById(id);
+        return true;
     }
 
 }

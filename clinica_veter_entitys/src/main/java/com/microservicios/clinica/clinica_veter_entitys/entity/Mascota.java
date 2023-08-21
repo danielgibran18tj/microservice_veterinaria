@@ -5,6 +5,8 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import java.util.List;
 
@@ -32,12 +34,12 @@ public class Mascota {
     @Column(nullable = false, length = 5)
     private Integer edad;
 
-    @OneToMany(mappedBy = "mascota", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "mascota", cascade = CascadeType.ALL)
     @JsonIgnore
     private List<Consulta> idConsulta;
 
-    @ManyToOne//(fetch = FetchType.LAZY)//consulta adicional para obtener su dato
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_cliente", referencedColumnName = "id_cliente")
-    @JsonIgnore
+    @OnDelete(action = OnDeleteAction.SET_NULL)
     private Cliente cliente;
 }

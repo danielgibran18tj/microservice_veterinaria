@@ -5,6 +5,8 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import java.util.List;
 
@@ -35,9 +37,9 @@ public class Empleado {
     private List<Consulta> idConsulta;
 
     // Relación muchos a uno con Sucursal
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_sucursal", referencedColumnName = "id_sucursal")
-    @JsonIgnore
+    @OnDelete(action = OnDeleteAction.SET_NULL)
     private Sucursal idSucursal;
 
 }

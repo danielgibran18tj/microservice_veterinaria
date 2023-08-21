@@ -11,7 +11,7 @@ public interface ClientServicePort {
 
     Client getId(Integer idClient) throws ApplicationException;
 
-    Client save(Client client);
+    Client save(Client client) throws ApplicationException;
 
     Client update(Client client) throws ApplicationException;
 

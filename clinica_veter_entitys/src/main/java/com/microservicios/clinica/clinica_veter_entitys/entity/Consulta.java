@@ -5,6 +5,8 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import java.time.LocalDateTime;
 
@@ -21,7 +23,8 @@ public class Consulta {
     private Integer idMascota;
 
     @ManyToOne
-    @JoinColumn(name = "id_mascota", referencedColumnName = "id_mascota", insertable = false, updatable = false)
+    @JoinColumn(name = "id_mascota", referencedColumnName = "id_mascota")
+    @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonIgnore
     private Mascota mascota;
 
@@ -32,6 +35,7 @@ public class Consulta {
 
     @ManyToOne
     @JoinColumn(name = "id_empleado", referencedColumnName = "id_empleado", insertable = false, updatable = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonIgnore
     private Empleado empleado;
 

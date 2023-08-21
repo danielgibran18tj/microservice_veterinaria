@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ClientCrudRepository extends JpaRepository<ClientEntity, Integer> {
 
+
     /*@Query(value =
             "SELECT     cliente.id_cliente AS id_cliente,       " +
             "           cliente.nombre AS duenio_mascota,       " +
