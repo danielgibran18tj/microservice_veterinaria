@@ -36,7 +36,7 @@ public class EmployeeService {
         if (!exists(employee.getId())){
             return EmployeeMapper.INSTANCE.toEmployee(employeeCrudRepository.save(EmployeeMapper.INSTANCE.toEmployeeEntity(employee)));
         }
-        throw new ApplicationException(HttpStatus.FOUND, "FOUND_CLIENT", "id mascot exist");
+        throw new ApplicationException(HttpStatus.FOUND, "FOUND_EMPLOYEE", "id employee exist");
 
     }
 
@@ -65,7 +65,7 @@ public class EmployeeService {
     }
 
 
-    public boolean exists(int idClient){
-        return this.employeeCrudRepository.existsById(idClient);
+    public boolean exists(int idEmployee){
+        return this.employeeCrudRepository.existsById(idEmployee);
     }
 }

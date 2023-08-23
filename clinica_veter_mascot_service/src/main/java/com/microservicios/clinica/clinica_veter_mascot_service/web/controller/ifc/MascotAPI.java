@@ -2,7 +2,6 @@ package com.microservicios.clinica.clinica_veter_mascot_service.web.controller.i
 
 import com.microservicios.clinica.clinica_veter_mascot_service.common.exception.ApplicationException;
 import com.microservicios.clinica.clinica_veter_mascot_service.domain.model.Mascot;
-import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;

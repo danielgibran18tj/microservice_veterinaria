@@ -13,14 +13,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+
 @RestController
 @RequestMapping("/api/employee")
 public class EmployeeController implements EmployeeAPI {
 
     private static final Logger log = LoggerFactory.getLogger(EmployeeController.class);
-
     private final HttpServletRequest request;
-
     private final EmployeeService employeeService;
 
     public EmployeeController(HttpServletRequest request, EmployeeService employeeService) {
@@ -36,8 +35,6 @@ public class EmployeeController implements EmployeeAPI {
             return new ResponseEntity<List<Employee>>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-
-
 
 
     public ResponseEntity<Employee> getId(@ApiParam(value = "ID of Employee to return", required = true) @PathVariable("id") Integer id) throws ApplicationException {
