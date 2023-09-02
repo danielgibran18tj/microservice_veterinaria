@@ -42,14 +42,10 @@ public class ConsultController  implements ConsultAPI {
     @Override
     public ResponseEntity<Consult> agg(Consult consult) throws ApplicationException {
         Consult consult1 = consultService.save(consult);
-        try {
-            if (consult1 != null){
-                return ResponseEntity.ok(consult1);
-            }
-        }catch (Exception e){
-            return ResponseEntity.badRequest().build();
+        if (consult1 != null){
+            return ResponseEntity.ok(consult1);
         }
-        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+        return ResponseEntity.badRequest().build();
     }
 
 
@@ -77,10 +73,10 @@ public class ConsultController  implements ConsultAPI {
 
 
     public ResponseEntity<String> deleteConsultaById(@PathVariable Integer idMascota, @PathVariable Integer idEmpleado) {
-        Boolean consult1 = consultService.deleteConsultaByIds(idMascota, idEmpleado);
+        Boolean consult1 = consultService.deleteConsultByIds(idMascota, idEmpleado);
         if (consult1){
             return ResponseEntity.ok("Consult successfully removed");
         }
-        return ResponseEntity.badRequest().build();
+        return ResponseEntity.notFound().build();
     }
 }

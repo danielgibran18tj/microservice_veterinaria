@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/clinica_veter_branch_service/microservicio_clinica_veterinaria.clinica_veter_branch_service.main.iml" filepath="$PROJECT_DIR$/.idea/modules/clinica_veter_branch_service/microservicio_clinica_veterinaria.clinica_veter_branch_service.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/clinica_veter_client_service/microservicio_clinica_veterinaria.clinica_veter_client_service.main.iml" filepath="$PROJECT_DIR$/.idea/modules/clinica_veter_client_service/microservicio_clinica_veterinaria.clinica_veter_client_service.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/clinica_veter_consulta_service/microservicio_clinica_veterinaria.clinica_veter_consulta_service.main.iml" filepath="$PROJECT_DIR$/.idea/modules/clinica_veter_consulta_service/microservicio_clinica_veterinaria.clinica_veter_consulta_service.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/clinica_veter_employee_service/microservicio_clinica_veterinaria.clinica_veter_employee_service.main.iml" filepath="$PROJECT_DIR$/.idea/modules/clinica_veter_employee_service/microservicio_clinica_veterinaria.clinica_veter_employee_service.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/clinica_veter_entitys/microservicio_clinica_veterinaria.clinica_veter_entitys.main.iml" filepath="$PROJECT_DIR$/.idea/modules/clinica_veter_entitys/microservicio_clinica_veterinaria.clinica_veter_entitys.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/clinica_veter_mascot_service/microservicio_clinica_veterinaria.clinica_veter_mascot_service.main.iml" filepath="$PROJECT_DIR$/.idea/modules/clinica_veter_mascot_service/microservicio_clinica_veterinaria.clinica_veter_mascot_service.main.iml" />
+    </modules>
+  </component>
+</project>
