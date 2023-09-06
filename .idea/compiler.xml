@@ -12,6 +12,7 @@
         <module name="microservicio_clinica_veterinaria.clinica_veter_client_service.main" />
         <module name="microservicio_clinica_veterinaria.clinica_veter_consulta_service.main" />
         <module name="microservicio_clinica_veterinaria.clinica_veter_mascot_service.main" />
+        <module name="microservicio_clinica_veterinaria.client_mascota_service.main" />
         <module name="microservicio_clinica_veterinaria.clinica_veter_employee_service.main" />
       </profile>
       <profile name="Gradle Imported" enabled="true">

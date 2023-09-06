@@ -1,4 +1,4 @@
-package com.microservicios.clinica.clinica_veter_client_service;
+package com.microservicios.client_mascota_service;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -6,10 +6,10 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
 @SpringBootApplication
 @EnableDiscoveryClient
-public class ClinicaVeterClientServiceApplication {
+public class ClientMascotaServiceApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(ClinicaVeterClientServiceApplication.class, args);
+		SpringApplication.run(ClientMascotaServiceApplication.class, args);
 	}
 
 }

@@ -9,6 +9,7 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/client_mascota_service" />
             <option value="$PROJECT_DIR$/clinica_veter_branch_service" />
             <option value="$PROJECT_DIR$/clinica_veter_client_service" />
             <option value="$PROJECT_DIR$/clinica_veter_consulta_service" />

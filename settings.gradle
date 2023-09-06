@@ -13,6 +13,7 @@ plugins {
 rootProject.name = 'microservicio clinica veterinaria'
 include(
         'app',
+        'client_mascota_service',
         'clinica_veter_branch_service',
         'clinica_veter_client_service',
         'clinica_veter_consulta_service',
