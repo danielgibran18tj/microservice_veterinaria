@@ -13,8 +13,8 @@ spring:
 # DB
 # ===============================
   datasource:
-    url: jdbc:mysql://localhost:3306/micro_clinica?createDatabaseIfNotExist=true
-    #url: jdbc:mysql://localhost:3306/clinica_veterinaria?createDatabaseIfNotExist=true
+    #url: jdbc:mysql://localhost:3306/micro_clinica?createDatabaseIfNotExist=true
+    url: jdbc:mysql://localhost:3306/clinica_veterinaria?createDatabaseIfNotExist=true
     driver-class-name: com.mysql.cj.jdbc.Driver
 #embedded-database-connection: h2
     username: root

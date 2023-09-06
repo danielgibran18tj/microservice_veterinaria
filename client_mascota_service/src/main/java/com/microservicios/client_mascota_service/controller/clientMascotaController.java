@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class clientMascotaController {
@@ -25,16 +26,22 @@ public class clientMascotaController {
         return clienteMascotaRepository.findAll();
     }
 
+    @GetMapping("/clientMascota/{id}")
+    public Client_Mascota obtenerPorId(@PathVariable("id") Integer id) {
+        Optional<Client_Mascota> optionalClientMascota = clienteMascotaRepository.findById(id);
+        return optionalClientMascota.get();
+    }
+
 
     @PostMapping("/clientMascota")
     public Client_Mascota agregarCliente(@RequestBody Client_Mascota client_mascota){
 
-        RestTemplate restTemplate = new RestTemplate();
-        ResponseEntity<Client> clientEntity = restTemplate.getForEntity("http://localhost:8086/api/cliente/client/" + client_mascota.getIdCliente(), Client.class);
-        ResponseEntity<Mascota> mascotaEntity = restTemplate.getForEntity("http://localhost:8088/api/mascot/mascot/" + client_mascota.getId(), Mascota.class);
+        //RestTemplate restTemplate = new RestTemplate();
+        //ResponseEntity<Client> clientEntity = restTemplate.getForEntity("http://localhost:8086/api/cliente/client/" + client_mascota.getIdCliente(), Client.class);
+        //ResponseEntity<Mascota> mascotaEntity = restTemplate.getForEntity("http://localhost:8088/api/mascot/mascot/" + client_mascota.getId(), Mascota.class);
 
-        //ResponseEntity<Client> clientEntity = restTemplate.getForEntity("http://client_service/api/cliente/client/" + client_mascota.getIdCliente(), Client.class);
-        //ResponseEntity<Mascota> mascotaEntity = restTemplate.getForEntity("http://mascot_service/api/mascot/mascot/" + client_mascota.getId(), Mascota.class);
+        ResponseEntity<Client> clientEntity = restTemplate.getForEntity("http://client-service/api/cliente/client/" + client_mascota.getIdCliente(), Client.class);
+        ResponseEntity<Mascota> mascotaEntity = restTemplate.getForEntity("http://mascot-service/api/mascot/mascot/" + client_mascota.getId(), Mascota.class);
 
         if (clientEntity == null || mascotaEntity == null){
             return null;

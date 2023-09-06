@@ -37,7 +37,7 @@ spring:
         format_sql: true
 
   application:
-    name: clientMascota_service
+    name: clientmascota-api
 
 
 logging:

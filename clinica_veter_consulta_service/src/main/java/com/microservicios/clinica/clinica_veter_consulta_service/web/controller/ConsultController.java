@@ -1,8 +1,13 @@
 package com.microservicios.clinica.clinica_veter_consulta_service.web.controller;
 
 import com.microservicios.clinica.clinica_veter_consulta_service.common.exception.ApplicationException;
+import com.microservicios.clinica.clinica_veter_consulta_service.domain.Dto.ClientMascotaDto;
+import com.microservicios.clinica.clinica_veter_consulta_service.domain.infraestructura.ConsultFeignController;
 import com.microservicios.clinica.clinica_veter_consulta_service.domain.model.Consult;
 import com.microservicios.clinica.clinica_veter_consulta_service.domain.service.ConsultService;
+import com.microservicios.clinica.clinica_veter_consulta_service.persistence.CitaRepository;
+import com.microservicios.clinica.clinica_veter_consulta_service.persistence.ConsultRepository;
+import com.microservicios.clinica.clinica_veter_consulta_service.persistence.entity.CitaFeign;
 import com.microservicios.clinica.clinica_veter_consulta_service.web.controller.ifc.ConsultAPI;
 import jakarta.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
@@ -21,6 +26,11 @@ public class ConsultController  implements ConsultAPI {
     private static final Logger log = LoggerFactory.getLogger(ConsultController.class);
     private final HttpServletRequest request;
     private final ConsultService consultService;
+
+    @Autowired
+    private CitaRepository citaRepository;
+    @Autowired
+    private ConsultFeignController consultFeignController;
 
     @Autowired
     public ConsultController(HttpServletRequest request, ConsultService consultService) {
@@ -46,6 +56,22 @@ public class ConsultController  implements ConsultAPI {
             return ResponseEntity.ok(consult1);
         }
         return ResponseEntity.badRequest().build();
+    }
+
+    @PostMapping("/citaFeign")
+    public CitaFeign aggCitaFeign(@RequestBody CitaFeign citaFeign){
+        ClientMascotaDto clientMascotaDto = this.consultFeignController.obtenerPorId(citaFeign.getIdClienteMascota());
+
+        if (clientMascotaDto == null) return null;
+
+        citaFeign.setNameMascota(clientMascotaDto.getName());
+        citaFeign.setAnimal(clientMascotaDto.getAnimal());
+        citaFeign.setAge(clientMascotaDto.getAge());
+        citaFeign.setNombreCliente(clientMascotaDto.getNombre());
+        citaFeign.setNumeroCelular(clientMascotaDto.getNumeroCelular());
+
+        CitaFeign nuevaCitaFeign = this.citaRepository.save(citaFeign);
+        return nuevaCitaFeign;
     }
 
 

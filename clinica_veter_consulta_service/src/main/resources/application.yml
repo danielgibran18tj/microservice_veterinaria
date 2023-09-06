@@ -19,7 +19,7 @@ spring:
     #embedded-database-connection: h2
     username: root
     password: leinad
-    url: jdbc:mysql://localhost:3306/clinica_veterinaria
+    url: jdbc:mysql://localhost:3306/clinica_veterinaria?createDatabaseIfNotExist=true
 
 
   # ===============================
@@ -27,8 +27,8 @@ spring:
   # ===============================
   jpa:
     show-sql: true
-      #hibernate:
-    #ddl-auto: update
+    hibernate:
+      ddl-auto: update
     database-platform: org.hibernate.dialect.MySQLDialect
     properties:
       hibernate:
@@ -37,7 +37,7 @@ spring:
         format_sql: true
 
   application:
-    name: consult_service
+    name: consult-service
 
 logging:
   pattern:
